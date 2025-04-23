@@ -33,15 +33,15 @@
     }
 
     .button-container {
-      text-align: center;
-      margin-top: 30px;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       gap: 15px;
-      align-items: center;
+      margin-top: 30px;
     }
 
-    button {
+    .button-container button {
+      flex: 1;
+      max-width: 200px;
       background-color: #444;
       color: white;
       border: none;
@@ -52,7 +52,7 @@
       transition: 0.3s;
     }
 
-    button:hover {
+    .button-container button:hover {
       background-color: #666;
     }
 
@@ -111,26 +111,24 @@
       z-index: 0;
     }
 
- @keyframes drift {
-  0% {
-    transform: translate(-50%, 100vh) scale(0.8);
-    opacity: 0.1;
-  }
-  50% {
-    transform: translate(100vw, -50%) scale(1.2);
-    opacity: 0.05;
-  }
-  100% {
-    transform: translate(-50%, -200px) scale(0);
-    opacity: 0;
-  }
-}
-
+    @keyframes drift {
+      0% {
+        transform: translate(-50%, 100vh) scale(0.8);
+        opacity: 0.1;
+      }
+      50% {
+        transform: translate(100vw, -50%) scale(1.2);
+        opacity: 0.05;
+      }
+      100% {
+        transform: translate(-50%, -200px) scale(0);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Smoke -->
   <script>
     for (let i = 0; i < 12; i++) {
       const smoke = document.createElement('div');
@@ -142,16 +140,30 @@
     }
 
     function togglePayment() {
-      document.getElementById('paymentInfo').classList.toggle('show');
+      const payment = document.getElementById('paymentInfo');
+      const purchase = document.getElementById('purchaseMenu');
+      const isShown = payment.classList.contains('show');
+
+      payment.classList.toggle('show');
+      if (!isShown) {
+        purchase.classList.remove('show');
+      }
     }
 
     function togglePurchase() {
-      document.getElementById('purchaseMenu').classList.toggle('show');
+      const purchase = document.getElementById('purchaseMenu');
+      const payment = document.getElementById('paymentInfo');
+      const isShown = purchase.classList.contains('show');
+
+      purchase.classList.toggle('show');
+      if (!isShown) {
+        payment.classList.remove('show');
+      }
     }
 
     function updatePrice() {
       const duration = document.getElementById('duration').value;
-      let basePrice = duration === 'weekly' ? 10 : 50;
+      let basePrice = duration === 'weekly' ? 15 : 50;
       let tax = basePrice * 0.005;
       let finalPrice = (basePrice + tax).toFixed(2);
       document.getElementById('priceDisplay').innerText = `Total (incl. 0.5% tax): $${finalPrice}`;
@@ -172,16 +184,15 @@
       <button onclick="togglePurchase()">Purchase</button>
     </div>
 
-    <!-- Payment Info Dropdown -->
     <div class="dropdown-section" id="paymentInfo">
       <h2>Payment Options</h2>
       <ul>
-        <li><strong>Life Time:</strong></li>
+        <li><strong>Lifetime:</strong></li>
         <li>Apple Pay - $50</li>
         <li>Cash app - $50</li>
         <li>PayPal - $50</li>
         <li>Crypto (BTC/ETH) - $50</li>
-        
+
         <li><strong>Weekly:</strong></li>
         <li>Apple Pay - $15</li>
         <li>Cash app - $15</li>
@@ -190,15 +201,14 @@
       </ul>
     </div>
 
-    <!-- Purchase Menu Dropdown -->
     <div class="dropdown-section" id="purchaseMenu">
       <h2>Select Your Purchase</h2>
 
       <label for="paymentType">Payment Method:</label>
       <select id="paymentType" onchange="updatePrice()">
         <option value="Apple Pay">Apple Pay</option>
-        <option value="PayPal">Cash app</option>
-        <option value="Crypto">Crypto (BTC, Solana, Eth</option>
+        <option value="Cash App">Cash app</option>
+        <option value="Crypto">Crypto (BTC, Solana, ETH)</option>
       </select>
 
       <label for="duration">Subscription Type:</label>
@@ -208,7 +218,7 @@
       </select>
 
       <div class="price-display" id="priceDisplay">
-        Total (incl. 0.5% tax): $15.05
+        Total (incl. 0.5% tax): $15.08
       </div>
 
       <div style="text-align:center; margin-top: 20px;">
