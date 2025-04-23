@@ -34,6 +34,7 @@
 
     .button-container {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       gap: 15px;
       margin-top: 30px;
@@ -145,6 +146,47 @@
       100% {
         transform: translate(-50%, -200px) scale(0);
         opacity: 0;
+      }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px; /* Smaller heading for mobile */
+      }
+
+      .button-container {
+        flex-direction: column; /* Stack the buttons vertically */
+      }
+
+      .button-container button {
+        width: 100%; /* Make buttons take full width */
+        padding: 15px; /* Adjust padding */
+        font-size: 16px; /* Adjust font size */
+      }
+
+      .dropdown-section {
+        padding: 20px;
+      }
+
+      .purchase-btn {
+        width: 100%; /* Make the purchase button full width on mobile */
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px; /* Smaller heading for very small screens */
+      }
+
+      .button-container button {
+        font-size: 14px; /* Further reduce font size */
+        padding: 12px; /* Reduce padding for small screens */
+      }
+
+      .purchase-btn {
+        padding: 12px 20px; /* Adjust purchase button size */
+        font-size: 16px; /* Adjust font size */
       }
     }
   </style>
