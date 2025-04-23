@@ -135,6 +135,28 @@
       pointer-events: none;
       z-index: 0;
     }
+   ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #333;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+    }
 
     @keyframes drift {
       0% {
