@@ -15,6 +15,10 @@
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
+      min-height: 100vh; /* Ensure the body takes up the full viewport height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Ensure content is spaced appropriately */
     }
 
     .content {
@@ -124,7 +128,7 @@
       height: 200px;
       background: radial-gradient(white, transparent);
       opacity: 0.05;
-      animation: drift 25s infinite ease-in-out;
+      animation: drift 50s infinite ease-in-out; /* Slower animation */
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -143,6 +147,17 @@
         transform: translate(-50%, -200px) scale(0);
         opacity: 0;
       }
+    }
+
+    /* Prevent extra scroll space */
+    html, body {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* Set content height based on the available space */
+    .content {
+      flex-grow: 1;
     }
 
   </style>
