@@ -20,12 +20,13 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-bottom: 100px;
+      padding: 60px 20px 200px;
+      max-width: 600px;
+      margin: auto;
     }
 
     h1 {
       text-align: center;
-      margin-top: 80px;
       font-size: 48px;
       color: #e0e0e0;
       text-shadow: 0 0 20px #aaa;
@@ -53,8 +54,7 @@
 
     .payment-info {
       display: none;
-      margin: 30px auto;
-      max-width: 400px;
+      margin: 30px auto 0;
       background-color: #222;
       padding: 20px;
       border-radius: 15px;
@@ -79,50 +79,43 @@
       padding: 5px 0;
     }
 
-    /* Smoke Animation */
+    /* Smoke styles */
     .smoke {
-      position: fixed;
+      position: absolute;
       width: 200px;
       height: 200px;
       background: radial-gradient(white, transparent);
       opacity: 0.05;
-      animation: drift 20s infinite ease-in-out;
+      animation: drift 25s infinite ease-in-out;
       border-radius: 50%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
 
     @keyframes drift {
       0% {
-        transform: translate(-50%, 100vh) scale(0.5);
+        transform: translate(-50%, 100vh) scale(0.8);
         opacity: 0.1;
       }
       50% {
         transform: translate(100vw, -50%) scale(1.2);
-        opacity: 0.03;
+        opacity: 0.05;
       }
       100% {
-        transform: translate(-50%, -200px) scale(0.7);
-        opacity: 0.1;
+        transform: translate(-50%, -200px) scale(0.1);
+        opacity: 0;
       }
     }
-
-    /* Extra space to allow scrolling */
-    .spacer {
-      height: 1000px;
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Smoke floating background -->
   <script>
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 12; i++) {
       const smoke = document.createElement('div');
       smoke.className = 'smoke';
       smoke.style.left = Math.random() * 100 + 'vw';
-      smoke.style.top = Math.random() * 100 + 'vh';
+      smoke.style.top = Math.random() * 2000 + 'px';
       smoke.style.animationDelay = (Math.random() * 20) + 's';
       document.body.appendChild(smoke);
     }
@@ -151,8 +144,6 @@
         <li>Crypto (any) - $15</li>
       </ul>
     </div>
-
-    <div class="spacer"></div>
   </div>
 
   <script>
