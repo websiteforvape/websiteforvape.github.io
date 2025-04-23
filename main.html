@@ -226,6 +226,35 @@
     .close:hover {
       color: white;
     }
+
+    /* Mobile Styles */
+    @media only screen and (max-width: 600px) {
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .dropdown-section {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: none;
+      }
+
+      .dropdown-section.show {
+        max-height: 600px;
+        padding: 20px;
+      }
+
+      .checkbox-container label {
+        font-size: 14px;
+      }
+
+      .purchase-btn {
+        width: 100%;
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -240,22 +269,37 @@
       document.body.appendChild(smoke);
     }
 
+    // Check if the user is on a mobile device
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
     function togglePayment() {
-      document.getElementById('paymentInfo').classList.toggle('show');
-      document.getElementById('purchaseMenu').classList.remove('show');
-      document.getElementById('featuresMenu').classList.remove('show');
+      if (isMobile) {
+        document.getElementById('paymentInfo').classList.toggle('show');
+        document.getElementById('purchaseMenu').classList.remove('show');
+        document.getElementById('featuresMenu').classList.remove('show');
+      } else {
+        document.getElementById('paymentInfo').classList.toggle('show');
+      }
     }
 
     function togglePurchase() {
-      document.getElementById('purchaseMenu').classList.toggle('show');
-      document.getElementById('paymentInfo').classList.remove('show');
-      document.getElementById('featuresMenu').classList.remove('show');
+      if (isMobile) {
+        document.getElementById('purchaseMenu').classList.toggle('show');
+        document.getElementById('paymentInfo').classList.remove('show');
+        document.getElementById('featuresMenu').classList.remove('show');
+      } else {
+        document.getElementById('purchaseMenu').classList.toggle('show');
+      }
     }
 
     function toggleFeatures() {
-      document.getElementById('featuresMenu').classList.toggle('show');
-      document.getElementById('paymentInfo').classList.remove('show');
-      document.getElementById('purchaseMenu').classList.remove('show');
+      if (isMobile) {
+        document.getElementById('featuresMenu').classList.toggle('show');
+        document.getElementById('paymentInfo').classList.remove('show');
+        document.getElementById('purchaseMenu').classList.remove('show');
+      } else {
+        document.getElementById('featuresMenu').classList.toggle('show');
+      }
     }
 
     function confirmPurchase() {
@@ -275,13 +319,6 @@
 
     function closeModal() {
       document.getElementById("tosModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById("tosModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
     }
   </script>
 
@@ -327,9 +364,9 @@
         <option value="lifetime">Lifetime - $50</option>
       </select>
 
-      <div class="checkbox-container" onclick="showModal()">
+      <div class="checkbox-container">
         <input type="checkbox" id="tosCheck">
-        <label for="tosCheck">Agreed to the Terms of Service</label>
+        <label for="tosCheck" onclick="showModal()">Agreed to the Terms of Service</label>
       </div>
 
       <div style="text-align:center; margin-top: 20px;">
@@ -340,12 +377,12 @@
     <div class="dropdown-section" id="featuresMenu">
       <h2>Tool Features</h2>
       <ul>
-        <li>Undetectable Injection</li>
-        <li>Customizable Configs</li>
-        <li>Auto Updates</li>
-        <li>24/7 Support</li>
-        <li>Multi-Platform Compatible</li>
-        <li>Low System Impact</li>
+        <li>DDos</li>
+        <li>IP To Location</li>
+        <li>IP To Open Ports</li>
+        <li>IP Grab</li>
+        <li>Discord Webhook Raid</li>
+        <li>There Will Be More In The Future!</li>
       </ul>
     </div>
   </div>
@@ -363,12 +400,13 @@
         will be immediately revoked without refund. You agree to use this tool responsibly and lawfully.
       </p>
       <p>You release the creators from any liability due to misuse, and understand that no rebilling or blame will be directed to the developers.</p>
+       </p>
+       </p>Breaking any tos rules you will lose your key and there will be no refund.</p>
     </div>
   </div>
 
   <div class="footer">
     <p>&copy; 2025 Vape Multi-Tool</p>
   </div>
-
 </body>
 </html>
