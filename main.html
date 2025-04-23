@@ -27,7 +27,7 @@
       padding: 40px 20px;
       max-width: 500px;
       margin: auto;
-      flex-grow: 1; /* Ensures the content area grows to fill the available space */
+      flex-grow: 1;
     }
 
     h1 {
@@ -62,8 +62,8 @@
 
     /* The price dropdown menu */
     .dropdown-section {
-      max-height: 400px;  /* Set the max-height for scrollable area */
-      overflow-y: auto;   /* Allow vertical scrolling */
+      max-height: 0;
+      overflow-y: auto;
       transition: max-height 0.5s ease, padding 0.5s ease;
       background-color: #222;
       padding: 0 20px;
@@ -74,7 +74,7 @@
 
     .dropdown-section.show {
       padding: 20px;
-      max-height: 400px; /* Ensure it stays at a specific height */
+      max-height: 400px;
     }
 
     .dropdown-section h2 {
@@ -152,13 +152,27 @@
       }
     }
 
+    /* Customize scrollbar appearance */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #333;
+    }
+
     /* Ensure the page doesn't scroll too far */
     html, body {
       height: 100%;
       overflow-y: auto;
     }
 
-    /* Footer section that will not scroll */
+    /* Footer section */
     .footer {
       text-align: center;
       margin-top: 30px;
@@ -178,11 +192,13 @@
       document.body.appendChild(smoke);
     }
 
+    // Toggle the dropdown visibility
     function togglePayment() {
       const payment = document.getElementById('paymentInfo');
       const purchase = document.getElementById('purchaseMenu');
       const isShown = payment.classList.contains('show');
-
+      
+      // Toggle the visibility of the 'payment' dropdown and close 'purchase' dropdown if open
       payment.classList.toggle('show');
       if (!isShown) {
         purchase.classList.remove('show');
@@ -194,12 +210,14 @@
       const payment = document.getElementById('paymentInfo');
       const isShown = purchase.classList.contains('show');
 
+      // Toggle the visibility of the 'purchase' dropdown and close 'payment' dropdown if open
       purchase.classList.toggle('show');
       if (!isShown) {
         payment.classList.remove('show');
       }
     }
 
+    // Confirm the purchase action
     function confirmPurchase() {
       const payment = document.getElementById('paymentType').value;
       const duration = document.getElementById('duration').value;
@@ -256,5 +274,6 @@
   <div class="footer">
     <p>&copy; 2025 Vape Multi Tool</p>
   </div>
+
 </body>
 </html>
