@@ -53,12 +53,19 @@
     }
 
     .payment-info {
-      display: none;
-      margin: 30px auto 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+      margin: 0 auto;
       background-color: #222;
-      padding: 20px;
+      padding: 0 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .payment-info.show {
+      padding: 20px;
+      max-height: 500px; /* Adjust as needed for the content size */
     }
 
     .payment-info h2 {
@@ -123,7 +130,7 @@
 
     function togglePayment() {
       const paymentInfo = document.getElementById('paymentInfo');
-      paymentInfo.style.display = paymentInfo.style.display === 'none' ? 'block' : 'none';
+      paymentInfo.classList.toggle('show');
     }
   </script>
 
