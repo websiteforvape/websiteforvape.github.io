@@ -111,20 +111,21 @@
       z-index: 0;
     }
 
-    @keyframes drift {
-      0% {
-        transform: translate(-50%, 100vh) scale(0.8);
-        opacity: 0.1;
-      }
-      50% {
-        transform: translate(100vw, -50%) scale(1.2);
-        opacity: 0.05;
-      }
-      100% {
-        transform: translate(-50%, -200px) scale(0.1);
-        opacity: 0;
-      }
-    }
+ @keyframes drift {
+  0% {
+    transform: translate(-50%, 100vh) scale(0.8);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(100vw, -50%) scale(1.2);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translate(-50%, -200px) scale(0);
+    opacity: 0;
+  }
+}
+
   </style>
 </head>
 <body>
