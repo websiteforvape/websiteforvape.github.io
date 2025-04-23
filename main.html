@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Vape Multi Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     * {
       box-sizing: border-box;
@@ -20,7 +22,6 @@
       flex-direction: column;
     }
 
-    /* Make the header sticky so it stays at the top */
     .content {
       position: relative;
       z-index: 2;
@@ -37,7 +38,6 @@
       text-shadow: 0 0 20px #aaa;
     }
 
-    /* Buttons will be centered and displayed side by side */
     .button-container {
       display: flex;
       justify-content: center;
@@ -60,7 +60,6 @@
       background-color: #666;
     }
 
-    /* The price dropdown menu */
     .dropdown-section {
       max-height: 0;
       overflow-y: auto;
@@ -107,7 +106,6 @@
       border: none;
     }
 
-    /* Purchase button */
     .purchase-btn {
       background-color: #333;
       color: white;
@@ -152,7 +150,7 @@
       }
     }
 
-    /* Customize scrollbar appearance */
+    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -166,18 +164,45 @@
       background: #333;
     }
 
-    /* Ensure the page doesn't scroll too far */
     html, body {
       height: 100%;
       overflow-y: auto;
     }
 
-    /* Footer section */
     .footer {
       text-align: center;
       margin-top: 30px;
     }
 
+    /* Mobile responsive tweaks */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .button-container button {
+        width: 100%;
+        font-size: 18px;
+      }
+
+      .dropdown-section {
+        max-height: 300px;
+      }
+
+      .purchase-btn {
+        width: 100%;
+        font-size: 18px;
+      }
+
+      .content {
+        padding: 30px 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -192,32 +217,22 @@
       document.body.appendChild(smoke);
     }
 
-    // Toggle the dropdown visibility
     function togglePayment() {
       const payment = document.getElementById('paymentInfo');
       const purchase = document.getElementById('purchaseMenu');
       const isShown = payment.classList.contains('show');
-      
-      // Toggle the visibility of the 'payment' dropdown and close 'purchase' dropdown if open
       payment.classList.toggle('show');
-      if (!isShown) {
-        purchase.classList.remove('show');
-      }
+      if (!isShown) purchase.classList.remove('show');
     }
 
     function togglePurchase() {
       const purchase = document.getElementById('purchaseMenu');
       const payment = document.getElementById('paymentInfo');
       const isShown = purchase.classList.contains('show');
-
-      // Toggle the visibility of the 'purchase' dropdown and close 'payment' dropdown if open
       purchase.classList.toggle('show');
-      if (!isShown) {
-        payment.classList.remove('show');
-      }
+      if (!isShown) payment.classList.remove('show');
     }
 
-    // Confirm the purchase action
     function confirmPurchase() {
       const payment = document.getElementById('paymentType').value;
       const duration = document.getElementById('duration').value;
