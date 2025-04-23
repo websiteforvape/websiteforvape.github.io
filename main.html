@@ -272,34 +272,18 @@
     // Check if the user is on a mobile device
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    function togglePayment() {
-      if (isMobile) {
-        document.getElementById('paymentInfo').classList.toggle('show');
-        document.getElementById('purchaseMenu').classList.remove('show');
-        document.getElementById('featuresMenu').classList.remove('show');
-      } else {
-        document.getElementById('paymentInfo').classList.toggle('show');
-      }
-    }
+    function toggleSection(sectionId) {
+      // Close all other sections
+      const sections = document.querySelectorAll('.dropdown-section');
+      sections.forEach(section => {
+        if (section.id !== sectionId) {
+          section.classList.remove('show');
+        }
+      });
 
-    function togglePurchase() {
-      if (isMobile) {
-        document.getElementById('purchaseMenu').classList.toggle('show');
-        document.getElementById('paymentInfo').classList.remove('show');
-        document.getElementById('featuresMenu').classList.remove('show');
-      } else {
-        document.getElementById('purchaseMenu').classList.toggle('show');
-      }
-    }
-
-    function toggleFeatures() {
-      if (isMobile) {
-        document.getElementById('featuresMenu').classList.toggle('show');
-        document.getElementById('paymentInfo').classList.remove('show');
-        document.getElementById('purchaseMenu').classList.remove('show');
-      } else {
-        document.getElementById('featuresMenu').classList.toggle('show');
-      }
+      // Toggle the selected section
+      const selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.toggle('show');
     }
 
     function confirmPurchase() {
@@ -326,9 +310,9 @@
     <h1>Vape Multi Tool</h1>
 
     <div class="button-container">
-      <button onclick="togglePayment()">Prices</button>
-      <button onclick="togglePurchase()">Purchase</button>
-      <button onclick="toggleFeatures()">Features</button>
+      <button onclick="toggleSection('paymentInfo')">Prices</button>
+      <button onclick="toggleSection('purchaseMenu')">Purchase</button>
+      <button onclick="toggleSection('featuresMenu')">Features</button>
     </div>
 
     <div class="dropdown-section" id="paymentInfo">
@@ -392,16 +376,12 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Terms of Service</h2>
       <p>
-        By agreeing to these terms, you acknowledge that any personal information you provide will be kept private and will not be shared with third parties. 
-        This tool may interact with external systems or send packets to specified IPs/ports — but only with the explicit permission of the system owner.
+        By agreeing to these terms, you acknowledge that any personal information you provide will be kept private and will not be shared with third parties.
       </p>
       <p>
-        Any unauthorized reverse-engineering, cracking, deobfuscation, or misuse of this tool is strictly forbidden. If such activity is detected, your license/key 
-        will be immediately revoked without refund. You agree to use this tool responsibly and lawfully.
+        Unauthorized reverse-engineering, cracking, deobfuscation, or misuse of this tool is strictly forbidden. If such activity is detected, your license/key will be immediately revoked without refund.
       </p>
-      <p>You release the creators from any liability due to misuse, and understand that no rebilling or blame will be directed to the developers.</p>
-       </p>
-       </p>Breaking any tos rules you will lose your key and there will be no refund.</p>
+      <p>You agree to use this tool responsibly and lawfully.</p>
     </div>
   </div>
 
