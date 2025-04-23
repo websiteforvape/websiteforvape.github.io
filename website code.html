@@ -65,7 +65,7 @@
 
     .payment-info.show {
       padding: 20px;
-      max-height: 500px; /* Adjust as needed for the content size */
+      max-height: 500px; 
     }
 
     .payment-info h2 {
@@ -86,7 +86,6 @@
       padding: 5px 0;
     }
 
-    /* Smoke styles */
     .smoke {
       position: absolute;
       width: 200px;
@@ -117,7 +116,6 @@
 </head>
 <body>
 
-  <!-- Smoke -->
   <script>
     for (let i = 0; i < 12; i++) {
       const smoke = document.createElement('div');
@@ -129,25 +127,25 @@
     }
 
     function togglePayment() {
-      const paymentInfo = document.getElementById('paymentInfo');
+      const paymentInfo = document.getElementById('payments');
       paymentInfo.classList.toggle('show');
     }
   </script>
 
   <div class="content">
-    <h1>Vape Multi Tool</h1>
+    <h1>Vape Multi-Tool</h1>
 
     <div class="button-container">
       <button onclick="togglePayment()">Payment Methods</button>
     </div>
 
-    <div class="payment-info" id="paymentInfo">
+    <div class="payment-info" id="payments">
       <h2>Payment Options</h2>
       <ul>
         <li><strong>Life Time:</strong></li>
         <li>Apple Pay - $50</li>
         <li>Cash - $50</li>
-        <li>PayPal - $50</li>
+        <li>Cash App - $50</li>
         <li>Crypto (BTC/ETH) - $50</li>
         
         <li></li>
@@ -155,7 +153,7 @@
         <li><strong>Weekly:</strong></li>
         <li>Apple Pay - $15</li>
         <li>Cash - $15</li>
-        <li>PayPal - $15</li>
+        <li>Cash App - $15</li>
         <li>Crypto (BTC/ETH) - $15</li>
       </ul>
     </div>
