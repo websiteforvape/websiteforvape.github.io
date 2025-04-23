@@ -35,6 +35,10 @@
     .button-container {
       text-align: center;
       margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
     }
 
     button {
@@ -52,38 +56,47 @@
       background-color: #666;
     }
 
-    .payment-info {
+    .dropdown-section {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.5s ease, padding 0.5s ease;
-      margin: 0 auto;
       background-color: #222;
       padding: 0 20px;
+      margin-top: 15px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
-    .payment-info.show {
+    .dropdown-section.show {
       padding: 20px;
-      max-height: 500px; 
+      max-height: 600px;
     }
 
-    .payment-info h2 {
+    .dropdown-section h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #00e0ff;
     }
 
-    .payment-info ul {
-      list-style: none;
-      padding: 0;
-      line-height: 1.8;
+    .dropdown-section label {
+      display: block;
+      margin: 10px 0 5px;
     }
 
-    .payment-info li {
-      font-size: 16px;
-      border-bottom: 1px solid #333;
-      padding: 5px 0;
+    .dropdown-section select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #333;
+      color: white;
+      border: none;
+    }
+
+    .price-display {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #0f0;
     }
 
     .smoke {
@@ -116,6 +129,7 @@
 </head>
 <body>
 
+  <!-- Smoke -->
   <script>
     for (let i = 0; i < 12; i++) {
       const smoke = document.createElement('div');
@@ -127,35 +141,73 @@
     }
 
     function togglePayment() {
-      const paymentInfo = document.getElementById('payments');
-      paymentInfo.classList.toggle('show');
+      document.getElementById('paymentInfo').classList.toggle('show');
+    }
+
+    function togglePurchase() {
+      document.getElementById('purchaseMenu').classList.toggle('show');
+    }
+
+    function updatePrice() {
+      const duration = document.getElementById('duration').value;
+      let basePrice = duration === 'weekly' ? 10 : 50;
+      let tax = basePrice * 0.005;
+      let finalPrice = (basePrice + tax).toFixed(2);
+      document.getElementById('priceDisplay').innerText = `Total (incl. 0.5% tax): $${finalPrice}`;
+    }
+
+    function confirmPurchase() {
+      const payment = document.getElementById('paymentType').value;
+      const duration = document.getElementById('duration').value;
+      alert(`You selected ${duration.toUpperCase()} plan with ${payment}. Proceeding to payment...`);
     }
   </script>
 
   <div class="content">
-    <h1>Vape Multi-Tool</h1>
+    <h1>Vape Multi Tool</h1>
 
     <div class="button-container">
       <button onclick="togglePayment()">Payment Methods</button>
+      <button onclick="togglePurchase()">Purchase</button>
     </div>
 
-    <div class="payment-info" id="payments">
+    <!-- Payment Info Dropdown -->
+    <div class="dropdown-section" id="paymentInfo">
       <h2>Payment Options</h2>
       <ul>
         <li><strong>Life Time:</strong></li>
         <li>Apple Pay - $50</li>
         <li>Cash - $50</li>
-        <li>Cash App - $50</li>
-        <li>Crypto (BTC/ETH) - $50</li>
-        
-        <li></li>
-        
-        <li><strong>Weekly:</strong></li>
-        <li>Apple Pay - $15</li>
-        <li>Cash - $15</li>
-        <li>Cash App - $15</li>
-        <li>Crypto (BTC/ETH) - $15</li>
+        <li>PayPal - $50</li>
+        <li>Crypto (BTC/ETH) - $45</li>
       </ul>
+    </div>
+
+    <!-- Purchase Menu Dropdown -->
+    <div class="dropdown-section" id="purchaseMenu">
+      <h2>Select Your Purchase</h2>
+
+      <label for="paymentType">Payment Method:</label>
+      <select id="paymentType" onchange="updatePrice()">
+        <option value="Apple Pay">Apple Pay</option>
+        <option value="Cash">Cash</option>
+        <option value="PayPal">PayPal</option>
+        <option value="Crypto">Crypto</option>
+      </select>
+
+      <label for="duration">Subscription Type:</label>
+      <select id="duration" onchange="updatePrice()">
+        <option value="weekly">Weekly - $10</option>
+        <option value="lifetime">Lifetime - $50</option>
+      </select>
+
+      <div class="price-display" id="priceDisplay">
+        Total (incl. 0.5% tax): $10.05
+      </div>
+
+      <div style="text-align:center; margin-top: 20px;">
+        <button onclick="confirmPurchase()">Confirm Purchase</button>
+      </div>
     </div>
   </div>
 </body>
