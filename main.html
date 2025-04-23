@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vape Multi-Tool</title>
+  <title>Vape Multi Tool</title>
   <style>
     * {
       box-sizing: border-box;
@@ -20,34 +20,32 @@
     .content {
       position: relative;
       z-index: 2;
-      padding: 60px 20px 200px;
-      max-width: 600px;
+      padding: 40px 20px 80px;  /* Reduced padding for a more compact layout */
+      max-width: 500px;  /* Narrowed down the content width */
       margin: auto;
     }
 
     h1 {
       text-align: center;
-      font-size: 48px;
+      font-size: 36px;  /* Slightly reduced font size */
       color: #e0e0e0;
       text-shadow: 0 0 20px #aaa;
     }
 
     .button-container {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       gap: 15px;
       margin-top: 30px;
+      flex-direction: row; /* Make sure buttons are side by side */
     }
 
     .button-container button {
-      flex: 1;
-      max-width: 200px;
       background-color: #444;
       color: white;
       border: none;
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 12px 25px;  /* Reduced padding */
+      font-size: 16px;  /* Slightly smaller font size */
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
@@ -63,53 +61,51 @@
       transition: max-height 0.5s ease, padding 0.5s ease;
       background-color: #222;
       padding: 0 20px;
-      margin-top: 15px;
+      margin-top: 10px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
     .dropdown-section.show {
       padding: 20px;
-      max-height: 600px;
+      max-height: 400px; /* Adjusted max-height */
     }
 
     .dropdown-section h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;  /* Reduced margin */
       color: #b47bff;
     }
 
     .dropdown-section ul {
       list-style: none;
       padding: 0;
-      border-top: 1px solid #444;
     }
 
     .dropdown-section li {
-      padding: 10px 0;
+      padding: 8px 0; /* Reduced padding for list items */
       border-bottom: 1px solid #444;
     }
 
     .dropdown-section label {
       display: block;
-      margin: 10px 0 5px;
+      margin: 8px 0 5px;
     }
 
     .dropdown-section select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;  /* Reduced padding */
       border-radius: 8px;
       background-color: #333;
       color: white;
       border: none;
     }
 
-    /* Styling for the 'Confirm Purchase' button */
     .purchase-btn {
       background-color: #333;
       color: white;
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 12px 25px;
+      font-size: 16px;
       border-radius: 10px;
       border: none;
       cursor: pointer;
@@ -149,46 +145,6 @@
       }
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px; /* Smaller heading for mobile */
-      }
-
-      .button-container {
-        flex-direction: column; /* Stack the buttons vertically */
-      }
-
-      .button-container button {
-        width: 100%; /* Make buttons take full width */
-        padding: 15px; /* Adjust padding */
-        font-size: 16px; /* Adjust font size */
-      }
-
-      .dropdown-section {
-        padding: 20px;
-      }
-
-      .purchase-btn {
-        width: 100%; /* Make the purchase button full width on mobile */
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 28px; /* Smaller heading for very small screens */
-      }
-
-      .button-container button {
-        font-size: 14px; /* Further reduce font size */
-        padding: 12px; /* Reduce padding for small screens */
-      }
-
-      .purchase-btn {
-        padding: 12px 20px; /* Adjust purchase button size */
-        font-size: 16px; /* Adjust font size */
-      }
-    }
   </style>
 </head>
 <body>
@@ -233,7 +189,7 @@
   </script>
 
   <div class="content">
-    <h1>Vape Multi-Tool</h1>
+    <h1>Vape Multi Tool</h1>
 
     <div class="button-container">
       <button onclick="togglePayment()">Prices</button>
@@ -273,7 +229,6 @@
       </select>
 
       <div style="text-align:center; margin-top: 20px;">
-        <!-- Darker "Confirm Purchase" button -->
         <button class="purchase-btn" onclick="confirmPurchase()">Confirm Purchase</button>
       </div>
     </div>
