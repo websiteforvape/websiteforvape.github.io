@@ -178,9 +178,15 @@
       <ul>
         <li><strong>Life Time:</strong></li>
         <li>Apple Pay - $50</li>
-        <li>Cash - $50</li>
+        <li>Cash app - $50</li>
         <li>PayPal - $50</li>
-        <li>Crypto (BTC/ETH) - $45</li>
+        <li>Crypto (BTC/ETH) - $50</li>
+        
+        <li><strong>Weekly:</strong></li>
+        <li>Apple Pay - $15</li>
+        <li>Cash app - $15</li>
+        <li>PayPal - $15</li>
+        <li>Crypto (BTC/ETH) - $15</li>
       </ul>
     </div>
 
@@ -191,19 +197,18 @@
       <label for="paymentType">Payment Method:</label>
       <select id="paymentType" onchange="updatePrice()">
         <option value="Apple Pay">Apple Pay</option>
-        <option value="Cash">Cash</option>
-        <option value="PayPal">PayPal</option>
-        <option value="Crypto">Crypto</option>
+        <option value="PayPal">Cash app</option>
+        <option value="Crypto">Crypto (BTC, Solana, Eth</option>
       </select>
 
       <label for="duration">Subscription Type:</label>
       <select id="duration" onchange="updatePrice()">
-        <option value="weekly">Weekly - $10</option>
+        <option value="weekly">Weekly - $15</option>
         <option value="lifetime">Lifetime - $50</option>
       </select>
 
       <div class="price-display" id="priceDisplay">
-        Total (incl. 0.5% tax): $10.05
+        Total (incl. 0.5% tax): $15.05
       </div>
 
       <div style="text-align:center; margin-top: 20px;">
