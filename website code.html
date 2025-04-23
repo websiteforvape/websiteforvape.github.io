@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vape Multi Tool</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 48px;
+      color: #e0e0e0;
+      text-shadow: 0 0 20px #aaa;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    .payment-info {
+      display: none;
+      margin: 30px auto;
+      max-width: 400px;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .payment-info h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00e0ff;
+    }
+
+    .payment-info ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+    }
+
+    .payment-info li {
+      font-size: 16px;
+      border-bottom: 1px solid #333;
+      padding: 5px 0;
+    }
+
+    /* Smoke Animation */
+    .smoke {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(white, transparent);
+      opacity: 0.05;
+      animation: drift 20s infinite ease-in-out;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(-50%, 100vh) scale(0.5);
+        opacity: 0.1;
+      }
+      50% {
+        transform: translate(100vw, -50%) scale(1.2);
+        opacity: 0.03;
+      }
+      100% {
+        transform: translate(-50%, -200px) scale(0.7);
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vape Multi Tool</h1>
+
+  <div class="button-container">
+    <button onclick="togglePayment()">Payment Methods</button>
+  </div>
+
+  <div class="payment-info" id="paymentInfo">
+    <h2>Payment Options</h2>
+    <ul>
+      <li><strong>Life Time:</strong></li>
+      <li>Apple Pay - $50</li>
+      <li>Cash - $50</li>
+      <li>Cash App - $50</li>
+      <li>Crypto (any) - $50</li>
+      <br>
+      <li><strong>Weekly:</strong></li>
+      <li>Apple Pay - $15</li>
+      <li>Cash - $15</li>
+      <li>Cash App - $15</li>
+      <li>Crypto (any) - $15</li>
+    </ul>
+  </div>
+
+  <!-- Random Smoke -->
+  <script>
+    function togglePayment() {
+      const info = document.getElementById("paymentInfo");
+      info.style.display = info.style.display === "none" || info.style.display === "" ? "block" : "none";
+    }
+
+    // Generate smoke elements
+    for (let i = 0; i < 10; i++) {
+      const smoke = document.createElement('div');
+      smoke.className = 'smoke';
+      smoke.style.left = Math.random() * 100 + 'vw';
+      smoke.style.top = Math.random() * 100 + 'vh';
+      smoke.style.animationDelay = (Math.random() * 20) + 's';
+      document.body.appendChild(smoke);
+    }
+  </script>
+
+</body>
+</html>
