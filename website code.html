@@ -120,6 +120,11 @@
       smoke.style.animationDelay = (Math.random() * 20) + 's';
       document.body.appendChild(smoke);
     }
+
+    function togglePayment() {
+      const paymentInfo = document.getElementById('paymentInfo');
+      paymentInfo.style.display = paymentInfo.style.display === 'none' ? 'block' : 'none';
+    }
   </script>
 
   <div class="content">
@@ -134,4 +139,11 @@
       <ul>
         <li><strong>Life Time:</strong></li>
         <li>Apple Pay - $50</li>
-        <li>Cash - $50
+        <li>Cash - $50</li>
+        <li>PayPal - $50</li>
+        <li>Crypto (BTC/ETH) - $45</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
