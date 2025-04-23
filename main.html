@@ -74,7 +74,7 @@
 
     .dropdown-section.show {
       padding: 20px;
-      max-height: 400px;
+      max-height: 500px;
     }
 
     .dropdown-section h2 {
@@ -134,28 +134,6 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
-    }
-   ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #555;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #333;
-    }
-
-    html, body {
-      height: 100%;
-      overflow-y: auto;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 30px;
     }
 
     @keyframes drift {
@@ -277,6 +255,13 @@
     function confirmPurchase() {
       const payment = document.getElementById('paymentType').value;
       const duration = document.getElementById('duration').value;
+      const tosAgreed = document.getElementById('tosCheck').checked;
+
+      if (!tosAgreed) {
+        alert("You must agree to the Terms of Service before purchasing.");
+        return;
+      }
+
       alert(`You selected ${duration.toUpperCase()} plan with ${payment}. Proceeding to payment...`);
     }
   </script>
@@ -323,6 +308,13 @@
         <option value="lifetime">Lifetime - $50</option>
       </select>
 
+      <div style="margin-top: 15px;">
+        <input type="checkbox" id="tosCheck">
+        <label for="tosCheck" style="font-size: 14px;">
+          I agree to the Terms of Service: Any personal information collected will remain private and will not be shared with third parties. By using this tool, you acknowledge that it may include features that interact with external systems or send packets to specified IP addresses and ports — but only with explicit permission from the system owner. You release the creators from liability for misuse and agree that no rebilling or blame will be directed toward the developers in such cases. Use responsibly.
+        </label>
+      </div>
+
       <div style="text-align:center; margin-top: 20px;">
         <button class="purchase-btn" onclick="confirmPurchase()">Confirm Purchase</button>
       </div>
@@ -332,11 +324,10 @@
       <h2>Tool Features</h2>
       <ul>
         <li>DDos</li>
-        <li>IP To Location</li>
+        <li>IP To location</li>
         <li>IP Grab</li>
-        <li>Port Grab</li>
+        <li>IP To Ports</li>
         <li>Discord Webhook Raid</li>
-        <li>More In The Future!</li>
       </ul>
     </div>
   </div>
