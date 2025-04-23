@@ -4,12 +4,8 @@
   <meta charset="UTF-8">
   <title>Vape Multi Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
@@ -74,7 +70,7 @@
 
     .dropdown-section.show {
       padding: 20px;
-      max-height: 500px;
+      max-height: 600px;
     }
 
     .dropdown-section h2 {
@@ -93,6 +89,10 @@
       border-bottom: 1px solid #444;
     }
 
+    .dropdown-section select, .dropdown-section input[type="checkbox"] {
+      margin-top: 5px;
+    }
+
     .dropdown-section label {
       display: block;
       margin: 8px 0 5px;
@@ -105,6 +105,24 @@
       background-color: #333;
       color: white;
       border: none;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkbox-container label {
+      cursor: pointer;
     }
 
     .purchase-btn {
@@ -174,33 +192,39 @@
       margin-top: 30px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 28px;
-      }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
 
-      .button-container {
-        flex-direction: column;
-        gap: 10px;
-      }
+    .modal-content {
+      background-color: #222;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      color: white;
+    }
 
-      .button-container button {
-        width: 100%;
-        font-size: 18px;
-      }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-      .dropdown-section {
-        max-height: 300px;
-      }
-
-      .purchase-btn {
-        width: 100%;
-        font-size: 18px;
-      }
-
-      .content {
-        padding: 30px 15px;
-      }
+    .close:hover {
+      color: white;
     }
   </style>
 </head>
@@ -217,52 +241,47 @@
     }
 
     function togglePayment() {
-      const payment = document.getElementById('paymentInfo');
-      const purchase = document.getElementById('purchaseMenu');
-      const features = document.getElementById('featuresMenu');
-      const isShown = payment.classList.contains('show');
-      payment.classList.toggle('show');
-      if (!isShown) {
-        purchase.classList.remove('show');
-        features.classList.remove('show');
-      }
+      document.getElementById('paymentInfo').classList.toggle('show');
+      document.getElementById('purchaseMenu').classList.remove('show');
+      document.getElementById('featuresMenu').classList.remove('show');
     }
 
     function togglePurchase() {
-      const purchase = document.getElementById('purchaseMenu');
-      const payment = document.getElementById('paymentInfo');
-      const features = document.getElementById('featuresMenu');
-      const isShown = purchase.classList.contains('show');
-      purchase.classList.toggle('show');
-      if (!isShown) {
-        payment.classList.remove('show');
-        features.classList.remove('show');
-      }
+      document.getElementById('purchaseMenu').classList.toggle('show');
+      document.getElementById('paymentInfo').classList.remove('show');
+      document.getElementById('featuresMenu').classList.remove('show');
     }
 
     function toggleFeatures() {
-      const features = document.getElementById('featuresMenu');
-      const payment = document.getElementById('paymentInfo');
-      const purchase = document.getElementById('purchaseMenu');
-      const isShown = features.classList.contains('show');
-      features.classList.toggle('show');
-      if (!isShown) {
-        payment.classList.remove('show');
-        purchase.classList.remove('show');
-      }
+      document.getElementById('featuresMenu').classList.toggle('show');
+      document.getElementById('paymentInfo').classList.remove('show');
+      document.getElementById('purchaseMenu').classList.remove('show');
     }
 
     function confirmPurchase() {
+      const tosAgreed = document.getElementById('tosCheck').checked;
       const payment = document.getElementById('paymentType').value;
       const duration = document.getElementById('duration').value;
-      const tosAgreed = document.getElementById('tosCheck').checked;
-
       if (!tosAgreed) {
         alert("You must agree to the Terms of Service before purchasing.");
         return;
       }
-
       alert(`You selected ${duration.toUpperCase()} plan with ${payment}. Proceeding to payment...`);
+    }
+
+    function showModal() {
+      document.getElementById("tosModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("tosModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("tosModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
     }
   </script>
 
@@ -297,7 +316,7 @@
       <label for="paymentType">Payment Method:</label>
       <select id="paymentType">
         <option value="Apple Pay">Apple Pay</option>
-        <option value="Cash App">Cash app</option>
+        <option value="Cash App">Cash App</option>
         <option value="Card">Card</option>
         <option value="Crypto">Crypto (BTC, Solana, ETH)</option>
       </select>
@@ -308,11 +327,9 @@
         <option value="lifetime">Lifetime - $50</option>
       </select>
 
-      <div style="margin-top: 15px;">
+      <div class="checkbox-container" onclick="showModal()">
         <input type="checkbox" id="tosCheck">
-        <label for="tosCheck" style="font-size: 14px;">
-          I agree to the Terms of Service: Any personal information collected will remain private and will not be shared with third parties. By using this tool, you acknowledge that it may include features that interact with external systems or send packets to specified IP addresses and ports — but only with explicit permission from the system owner. You release the creators from liability for misuse and agree that no rebilling or blame will be directed toward the developers in such cases. Use responsibly.
-        </label>
+        <label for="tosCheck">Agreed to the Terms of Service</label>
       </div>
 
       <div style="text-align:center; margin-top: 20px;">
@@ -323,13 +340,29 @@
     <div class="dropdown-section" id="featuresMenu">
       <h2>Tool Features</h2>
       <ul>
-        <li>DDos</li>
-        <li>IP To location</li>
-        <li>IP Grab</li>
-        <li>IP To Ports</li>
-        <li>Discord Webhook Raid</li>
-        <li>More In the Future</li>
+        <li>Undetectable Injection</li>
+        <li>Customizable Configs</li>
+        <li>Auto Updates</li>
+        <li>24/7 Support</li>
+        <li>Multi-Platform Compatible</li>
+        <li>Low System Impact</li>
       </ul>
+    </div>
+  </div>
+
+  <div id="tosModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Terms of Service</h2>
+      <p>
+        By agreeing to these terms, you acknowledge that any personal information you provide will be kept private and will not be shared with third parties. 
+        This tool may interact with external systems or send packets to specified IPs/ports — but only with the explicit permission of the system owner.
+      </p>
+      <p>
+        Any unauthorized reverse-engineering, cracking, deobfuscation, or misuse of this tool is strictly forbidden. If such activity is detected, your license/key 
+        will be immediately revoked without refund. You agree to use this tool responsibly and lawfully.
+      </p>
+      <p>You release the creators from any liability due to misuse, and understand that no rebilling or blame will be directed to the developers.</p>
     </div>
   </div>
 
