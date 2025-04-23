@@ -259,59 +259,58 @@
 </head>
 <body>
 
-<script>
-  for (let i = 0; i < 12; i++) {
-    const smoke = document.createElement('div');
-    smoke.className = 'smoke';
-    smoke.style.left = Math.random() * 100 + 'vw';
-    smoke.style.top = Math.random() * 2000 + 'px';
-    smoke.style.animationDelay = (Math.random() * 20) + 's';
-    document.body.appendChild(smoke);
-  }
+  <script>
+    for (let i = 0; i < 12; i++) {
+      const smoke = document.createElement('div');
+      smoke.className = 'smoke';
+      smoke.style.left = Math.random() * 100 + 'vw';
+      smoke.style.top = Math.random() * 2000 + 'px';
+      smoke.style.animationDelay = (Math.random() * 20) + 's';
+      document.body.appendChild(smoke);
+    }
 
-  // Check if the user is on a mobile device
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-  function toggleSection(sectionId) {
-    // Close all other sections
-    const sections = document.querySelectorAll('.dropdown-section');
-    sections.forEach(section => {
-      if (section.id !== sectionId) {
-        section.classList.remove('show');
-      }
-    });
+    function toggleSection(sectionId) {
+      const sections = document.querySelectorAll('.dropdown-section');
+      sections.forEach(section => {
+        if (section.id !== sectionId) {
+          section.classList.remove('show');
+        }
+      });
 
-    // Toggle the selected section
-    const selectedSection = document.getElementById(sectionId);
-    selectedSection.classList.toggle('show');
-  }
-
+      const selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.toggle('show');
+    }
+    
   function confirmPurchase() {
     const tosAgreed = document.getElementById('tosCheck').checked;
     const payment = document.getElementById('paymentType').value;
     const duration = document.getElementById('duration').value;
+
     if (!tosAgreed) {
       alert("You must agree to the Terms of Service before purchasing.");
       return;
     }
 
     if (payment === "Cash App") {
-      // Redirect to the Cash App link
-      window.location.href = "https://cash.app/$m0dzzzz";
+      const amount = duration === "weekly" ? 15 : 50;
+      const url = `https://cash.app/$m0dzzzz/${amount}`;
+      window.open(url, "_blank");
     } else {
       alert(`You selected ${duration.toUpperCase()} plan with ${payment}. Proceeding to payment...`);
     }
   }
 
-  function showModal() {
-    document.getElementById("tosModal").style.display = "block";
-  }
 
-  function closeModal() {
-    document.getElementById("tosModal").style.display = "none";
-  }
-</script>
+    function showModal() {
+      document.getElementById("tosModal").style.display = "block";
+    }
 
+    function closeModal() {
+      document.getElementById("tosModal").style.display = "none";
+    }
+  </script>
 
   <div class="content">
     <h1>Vape Multi Tool</h1>
@@ -329,7 +328,7 @@
         <li>Apple Pay - $49.99</li>
         <li>Cash app - $49.99</li>
         <li>Card - $49.99</li>
-        <li>Crypto (BTC/ETH) - $49.99</li>
+        <li>Crypto (BTC & Solana) - $49.99</li>
         <li><strong>Weekly:</strong></li>
         <li>Apple Pay - $14.99</li>
         <li>Cash app - $14.99</li>
