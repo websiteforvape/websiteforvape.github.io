@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <title>Vape Multi Tool</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       background-color: #111;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding-bottom: 100px;
     }
 
     h1 {
@@ -71,7 +81,7 @@
 
     /* Smoke Animation */
     .smoke {
-      position: absolute;
+      position: fixed;
       width: 200px;
       height: 200px;
       background: radial-gradient(white, transparent);
@@ -79,6 +89,7 @@
       animation: drift 20s infinite ease-in-out;
       border-radius: 50%;
       pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes drift {
@@ -95,41 +106,18 @@
         opacity: 0.1;
       }
     }
+
+    /* Extra space to allow scrolling */
+    .spacer {
+      height: 1000px;
+    }
+
   </style>
 </head>
 <body>
 
-  <h1>Vape Multi Tool</h1>
-
-  <div class="button-container">
-    <button onclick="togglePayment()">Payment Methods</button>
-  </div>
-
-  <div class="payment-info" id="paymentInfo">
-    <h2>Payment Options</h2>
-    <ul>
-      <li><strong>Life Time:</strong></li>
-      <li>Apple Pay - $50</li>
-      <li>Cash - $50</li>
-      <li>Cash App - $50</li>
-      <li>Crypto (any) - $50</li>
-      <br>
-      <li><strong>Weekly:</strong></li>
-      <li>Apple Pay - $15</li>
-      <li>Cash - $15</li>
-      <li>Cash App - $15</li>
-      <li>Crypto (any) - $15</li>
-    </ul>
-  </div>
-
-  <!-- Random Smoke -->
+  <!-- Smoke floating background -->
   <script>
-    function togglePayment() {
-      const info = document.getElementById("paymentInfo");
-      info.style.display = info.style.display === "none" || info.style.display === "" ? "block" : "none";
-    }
-
-    // Generate smoke elements
     for (let i = 0; i < 10; i++) {
       const smoke = document.createElement('div');
       smoke.className = 'smoke';
@@ -137,6 +125,40 @@
       smoke.style.top = Math.random() * 100 + 'vh';
       smoke.style.animationDelay = (Math.random() * 20) + 's';
       document.body.appendChild(smoke);
+    }
+  </script>
+
+  <div class="content">
+    <h1>Vape Multi Tool</h1>
+
+    <div class="button-container">
+      <button onclick="togglePayment()">Payment Methods</button>
+    </div>
+
+    <div class="payment-info" id="paymentInfo">
+      <h2>Payment Options</h2>
+      <ul>
+        <li><strong>Life Time:</strong></li>
+        <li>Apple Pay - $50</li>
+        <li>Cash - $50</li>
+        <li>Cash App - $50</li>
+        <li>Crypto (any) - $50</li>
+        <br>
+        <li><strong>Weekly:</strong></li>
+        <li>Apple Pay - $15</li>
+        <li>Cash - $15</li>
+        <li>Cash App - $15</li>
+        <li>Crypto (any) - $15</li>
+      </ul>
+    </div>
+
+    <div class="spacer"></div>
+  </div>
+
+  <script>
+    function togglePayment() {
+      const info = document.getElementById("paymentInfo");
+      info.style.display = info.style.display === "none" || info.style.display === "" ? "block" : "none";
     }
   </script>
 
